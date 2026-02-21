@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShadowShield - Risk Analyzer</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ ShadowShield</h1>
+    <h2>Cyber Risk Analyzer</h2>
+
+    <form method="POST">
+        <input type="text" name="website" placeholder="Enter website URL" required><br>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+    <h3>{{ result }}</h3>
+    <p>Risk Score: {{ score }}/100</p>
+    <p>IP Address: {{ ip }}</p>
+{% endif %}
