@@ -19,7 +19,31 @@ def home():
 
         # Extract domain name
         domain = website.replace("http://", "").replace("https://", "").split("/")[0]
+        
+# Simple Risk Logic
 
+# 1️⃣ Check if domain uses suspicious keywords
+suspicious_words = ["free", "login", "verify", "update", "secure", "bank"]
+
+for word in suspicious_words:
+    if word in domain:
+        score += 20
+
+# 2️⃣ Check if domain length is very long
+if len(domain) > 20:
+    score += 15
+
+# 3️⃣ Check if domain contains numbers
+if any(char.isdigit() for char in domain):
+    score += 15
+
+# Decide risk level
+if score >= 40:
+    result = "High Risk"
+elif score >= 20:
+    result = "Medium Risk"
+else:
+    result = "Low Risk"
         # Try getting IP address
         try:
             ip_address = socket.gethostbyname(domain)
