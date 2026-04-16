@@ -57,11 +57,21 @@ else:
         else:
             score += 70
 
-        # Suspicious keywords check
-        suspicious_words = ["login", "verify", "secure", "update", "bank"]
-        for word in suspicious_words:
-            if word in domain:
-                score += 10
+        # Suspicious keywords check (improved)
+suspicious_words = ["login", "verify", "secure", "update", "bank"]
+
+for word in suspicious_words:
+    if word in website.lower():
+        score += 5
+
+if "@" in website:
+    score += 20
+
+if domain.count('-') > 1:
+    score += 5
+
+if website.count('.') > 3:
+    score += 10
 
         # Final risk level
         if score < 40:
